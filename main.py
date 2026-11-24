@@ -17,11 +17,14 @@ AR = {
     'Ready':'جاهز', 'Working…':'جارٍ التنفيذ…', 'Completed':'اكتملت العملية',
     'Failed':'فشلت العملية', 'Input':'الإدخال', 'Results':'النتائج',
     'IP address':'عنوان IP', 'Hostname':'اسم المضيف', 'Analyze':'تحليل',
-    'Online IP info':'معلومات IP عبر الإنترنت', 'My device':'جهازي',
+    'IP Geolocation':'موقع الشبكة التقريبي', 'Online IP info':'معلومات IP عبر الإنترنت', 'My device':'جهازي',
     'Resolve':'استعلام', 'Copy results':'نسخ النتائج', 'Clear':'مسح',
     'Property':'الخاصية', 'Value':'القيمة', 'Version':'الإصدار',
     'Classification':'التصنيف', 'Global':'عام', 'Loopback':'حلقة محلية',
     'Private flag':'مؤشر الخصوصية', 'Addresses':'العناوين',
+    'Link-local':'رابط محلي', 'Multicast':'بث متعدد', 'Reserved':'محجوز',
+    'Public unicast':'عنوان أحادي عام', 'Security assessment':'التقييم الأمني',
+    'ASN':'رقم النظام المستقل',
     'Resolved local addresses':'العناوين المحلية', 'Country (approx.)':'الدولة (تقريبي)',
     'Region (approx.)':'المنطقة (تقريبي)', 'Network / ISP':'مزود الشبكة',
     'Timezone (approx.)':'المنطقة الزمنية (تقريبي)', 'Source':'المصدر',
@@ -198,7 +201,7 @@ class App(tk.Tk):
             row=self.actions(g)
             run=lambda:self.run(p,'IP validation',net.inspect_ip,self.fields['ip'].get())
             self.button(row,'Analyze',run,True)
-            self.button(row,'Online IP info',self.online,True)
+            self.button(row,'IP Geolocation',self.online,True)
             self.button(row,'My device',lambda:self.run(p,'Local identity',net.local_identity),True)
             entry.bind('<Return>',lambda _:run())
             self.hint('Online IP information is approximate.')
