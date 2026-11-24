@@ -7,7 +7,7 @@ An educational Python desktop application for the Network Programming laboratory
 ## Features
 - IPv4/IPv6 validation and classification using `ipaddress`
 - DNS resolution with `socket.getaddrinfo()`
-- Optional public IP network metadata over HTTPS (approximate information only)
+- IP intelligence: optional approximate country, region, ISP and ASN over verified HTTPS, plus offline address classification and security context; no threat reputation verdict.
 - Local TCP echo client/server and bounded loopback port checks
 - Responsive Tkinter/ttk interface using background threads and a queue
 - SQLite activity history and CSV export
