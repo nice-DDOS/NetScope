@@ -28,7 +28,11 @@ def inspect_ip(value):
         kind = 'Non-global / special use'
     return {'IP address': str(ip), 'Version': f'IPv{ip.version}',
             'Classification': kind, 'Global': str(ip.is_global),
-            'Loopback': str(ip.is_loopback), 'Private flag': str(ip.is_private)}
+            'Loopback': str(ip.is_loopback), 'Private flag': str(ip.is_private),
+            'Link-local': str(ip.is_link_local), 'Multicast': str(ip.is_multicast),
+            'Reserved': str(ip.is_reserved),
+            'Public unicast': str(ip.is_global and not ip.is_multicast and not ip.is_reserved),
+            'Security assessment': 'Not assessed — address properties alone do not establish reputation'}
 
 
 def resolve_dns(host):
@@ -58,7 +62,7 @@ def public_metadata(value):
         data = json.loads(reply.read(65536))
     if data.get('error'):
         raise ValueError(str(data.get('reason') or 'Provider returned an error'))
-    return {'IP address': str(ip), 'Country (approx.)': data.get('country_name') or 'N/A',
+    return {**inspect_ip(str(ip)), 'Country (approx.)': data.get('country_name') or 'N/A',
             'Region (approx.)': data.get('region') or 'N/A', 'Network / ISP': data.get('org') or 'N/A',
             'ASN': data.get('asn') or 'N/A', 'Timezone (approx.)': data.get('timezone') or 'N/A',
             'Source': 'ipapi.co / HTTPS', 'Note': 'Network estimates, not a person’s physical location.'}
